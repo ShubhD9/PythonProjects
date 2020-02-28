@@ -28,12 +28,18 @@ from h3 import h3
 GOOGLE_ACCOUNTS_BASE_URL = 'https://accounts.google.com'
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
-GOOGLE_CLIENT_ID = 'ajibtfqbt0p2ujbtv47liq7mua.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET = '5Y72dqybkGS42'
-GOOGLE_REFRESH_TOKEN=None
-GOOGLE_REFRESH_TOKEN = '1//0gNHDgQyUOY7-L9IrDeRA97Vbz-fRmNFXG4PhdFjEHVwCgYIARAAGBASNwF-_bQ4BT1jUPdKHOinagDZLO0CEN4ngzl8ikMnoal8'
+## get your clientid and secret key- https://www.google.com/search?q=get+google+client+id+and+secret+key
+## reference video - https://www.youtube.com/watch?v=9erstkJAuWI
+GOOGLE_CLIENT_ID = 'ajibtfqbt0p2ujbtv47liq7mua.apps.googleusercontent.com'. # set your client id
+GOOGLE_CLIENT_SECRET = '5Y72dqkGS42'  # set your client secret key
+
+## set your refresh token value here , initially you should pass None as token to generate token.
+GOOGLE_REFRESH_TOKEN= None
+# GOOGLE_REFRESH_TOKEN = '1//0gNHDgQyUOY7-L9IrDeRA97Vbz-fRmNFXG4PhdFjEHVwCgYIARAAGBASNwF-_bQ4BT1jUPdKHOinagDZLO0CEN4ngzl8ikMnoal8'
 print("imports done")
 
+
+#reading multiple dataframes (here I am reading single set multiple times ) you can change as per your need.
 final_booking1 = pd.read_excel('IBM_sample_employee_dataset.xlsx', sheet_name="Sheet1")
 final_booking2 = pd.read_excel('IBM_sample_employee_dataset.xlsx', sheet_name="Sheet1")
 final_booking3 = pd.read_excel('IBM_sample_employee_dataset.xlsx',sheet_name="Sheet1")
@@ -149,7 +155,7 @@ report1 = {
     'content': export_excel([(final_booking1, 'Sheet1'), 
                              (final_booking2, 'Sheet2'),
                              (final_booking3, 'Sheet3')]), #     'export_csv(data)/export_excel_excel
-    'filename': 'OutputFile.xlsx' #file_name_here
+    'filename': 'OutputFile.xlsx' #file_name_here 
 }
 
 
@@ -159,7 +165,7 @@ def send_mail(fromaddr, toaddr, subject, message):
     
     msg = MIMEMultipart('related')
 
-    msg['Subject'] = subject
+    msg['Subject'] = subject #write your subject line here
     msg['From'] = fromaddr
     msg['To'] = ",".join(toaddr)
 #     msg['To'] = recipients
@@ -180,7 +186,7 @@ def send_mail(fromaddr, toaddr, subject, message):
 #     msg_alternative.attach(attachment)
     #attachment_code ends
     
-    # Create xls attachment
+    # Create xls attachment, this is your attachment.
     attachment = MIMEBase('application', "octet-stream")
     attachment.set_payload(report1['content'])
     encoders.encode_base64(attachment)
@@ -207,11 +213,7 @@ if __name__ == '__main__':
         pass
     else:
         send_mail('sender@email.com',['receiver1@gmail.com','receiver1@gmail.com'],
-                  'A mail from you from Python',
-                  '<b>A mail from you from Python</b><br><br>' +
+                  'This is your subject line',
+                  '<bThis is your mail body</b><br><br>' +
                   'So happy to hear from you!')
         print("Mail Sent")
-   
-
-
-
