@@ -212,7 +212,7 @@ if __name__ == '__main__':
         print('Set the following as your GOOGLE_REFRESH_TOKEN:\n', refresh_token)
         pass
     else:
-        send_mail('sender@email.com',['receiver1@gmail.com','receiver1@gmail.com'],
+        send_mail('sender@email.com',['receiver1@gmail.com','receiver2@gmail.com','receiver3@gmail.com'],
                   'This is your subject line',
                   '<bThis is your mail body</b><br><br>' +
                   'So happy to hear from you!')
